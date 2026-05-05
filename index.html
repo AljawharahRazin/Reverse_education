@@ -15,8 +15,10 @@
   │   ├── Vid 1 Ja.MP4
   │   ├── Vid 2 Ja.MP4
   │   ├── Vid 3 Ja.MP4
+  │   ├── vid 4 ja.MP4
   │   ├── vid 5 ja.MP4
-  │   └── vid 6 ja.MP4
+  │   ├── vid 6 ja.MP4
+  │   └── vid 7 ja.MP4
   └── imges/
       ├── image.png
       ├── before.jpg
@@ -156,7 +158,7 @@
   .tool-name { font-size: 1rem; font-weight: 700; }
   .tool-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
 
-  /* ── APPLICATION (new section) ── */
+  /* ── APPLICATION ── */
   #application { background: linear-gradient(160deg, #0c1840 0%, #0f1e55 100%); gap: 1.5rem; }
   .app-table-wrap { overflow: hidden; border-radius: 12px; border: 1px solid rgba(201,162,39,0.2); }
   .app-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
@@ -175,7 +177,7 @@
   .large-class-title { font-size: 0.85rem; font-weight: 700; color: var(--gold); margin-bottom: 0.7rem; }
   .large-class-item { font-size: 0.82rem; color: var(--text-muted); line-height: 2; }
 
-  /* ── ACCESSIBILITY (new section) ── */
+  /* ── ACCESSIBILITY ── */
   #accessibility { background: linear-gradient(155deg, #0a1235 0%, #0e1c50 100%); gap: 1.5rem; }
   .access-card { display: flex; gap: 1.2rem; padding: 1.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(201,162,39,0.2); border-radius: 16px; }
   .access-icon-wrap { width: 60px; height: 60px; background: linear-gradient(135deg, rgba(201,162,39,0.3), rgba(201,162,39,0.1)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
@@ -208,15 +210,18 @@
   .stat-box.before .stat-num { color: #e74c3c; }
   .stat-box.after .stat-num { color: #2ecc71; }
   .stat-box.pct .stat-num { color: var(--gold); }
+
+  /* ── FIXED BAR CHART ── */
   .bar-chart { padding: 1.2rem; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); }
-  .bar-row { margin-bottom: 1rem; }
-  .bar-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.4rem; display: flex; justify-content: space-between; }
-  .bar-track { background: rgba(255,255,255,0.07); border-radius: 4px; height: 10px; position: relative; overflow: hidden; }
-  .bar-before, .bar-after { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; transition: width 1.5s ease; }
-  .bar-before { background: #e74c3c; }
-  .bar-after { background: #2ecc71; }
-  .bar-legend { display: flex; gap: 1rem; font-size: 0.7rem; margin-top: 0.5rem; justify-content: flex-end; }
+  .bar-row { margin-bottom: 1.4rem; }
+  .bar-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
+  .bar-track { position: relative; display: flex; flex-direction: column; gap: 4px; }
+  .bar-segment { height: 10px; border-radius: 4px; transition: width 1.5s ease; width: 0%; }
+  .bar-segment.bar-before { background: #e74c3c; }
+  .bar-segment.bar-after { background: #2ecc71; }
+  .bar-legend { display: flex; gap: 1rem; font-size: 0.7rem; margin-top: 0.8rem; justify-content: flex-end; }
   .leg-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin-left: 4px; }
+
   .results-summary { background: rgba(201,162,39,0.06); border: 1px solid rgba(201,162,39,0.2); border-right: 4px solid var(--gold); border-radius: 10px; padding: 1rem 1.2rem; font-size: 0.85rem; color: var(--gold-pale); line-height: 1.9; }
 
   /* ── FAQ ── */
@@ -242,19 +247,15 @@
   .finale-quote { font-size: 1.1rem; font-weight: 800; color: var(--gold); line-height: 1.6; }
 
   /* ── MEDIA BLOCKS ── */
-  .media-block { width: 100%; border-radius: 14px; overflow: hidden; background: rgba(0,0,0,0.3); border: 1px solid rgba(201,162,39,0.2); }
+  .media-block { width: 100%; border-radius: 14px; overflow: hidden; background: rgba(0,0,0,0.3); border: 1px solid rgba(201,162,39,0.2); position: relative; }
   .media-block video, .media-block img { width: 100%; height: 100%; display: block; object-fit: cover; }
   .media-block.video-block { aspect-ratio: 16/9; }
   .media-block.image-block { min-height: 220px; }
   .media-block.qr-block-img { width: 150px; height: 150px; margin: 0 auto; background: white; }
   .media-block.qr-block-img img { object-fit: contain; padding: 8px; }
 
-  /* fallback shown when video/img can't load */
-  .media-fallback { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; padding: 2rem 1rem; text-align: center; font-size: 0.8rem; color: var(--gold); opacity: 0.7; }
+  .media-fallback { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; padding: 2rem 1rem; text-align: center; font-size: 0.8rem; color: var(--gold); opacity: 0.7; position: absolute; inset: 0; background: rgba(0,0,0,0.3); }
   .media-fallback-icon { font-size: 2.5rem; }
-
-  .images-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; }
-  .images-grid .media-block { aspect-ratio: 3/4; min-height: unset; }
 
   .video-section-wrap { background: rgba(255,255,255,0.015); border: 1px solid rgba(201,162,39,0.15); border-radius: 14px; padding: 1.2rem; }
   .video-section-title { font-size: 0.85rem; font-weight: 700; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.4rem; }
@@ -339,7 +340,7 @@
   <div class="video-section-wrap fade-up">
     <div class="video-section-title">🎥 مقطع توضيحي عن تطبيق التقييم المعكوس</div>
     <div class="media-block video-block">
-      <video src="Videos/into 1 ja.MP4" controls playsinline onerror="this.closest('.media-block').querySelector('.media-fallback').style.display='flex';this.style.display='none'">
+      <video controls playsinline onerror="showFallback(this)">
         <source src="Videos/into 1 ja.MP4" type="video/mp4">
       </video>
       <div class="media-fallback"><div class="media-fallback-icon">🎥</div><div>مقطع توضيحي عن التقييم المعكوس</div><div style="font-size:0.7rem;opacity:0.6">Videos/into 1 ja.MP4</div></div>
@@ -370,14 +371,14 @@
   <div class="compare-footer fade-up">✨ الهدف ليس الكمال، بل التقدم</div>
 </section>
 
-<!-- ════════ CHAPTER 1 DIVIDER ════════ -->
+<!-- ════════ CHAPTER 1 ════════ -->
 <section class="chapter-divider" id="ch1">
   <div class="chapter-num fade-up">١</div>
   <div class="chapter-title fade-up">الأساس</div>
   <div class="chapter-sub fade-up">المشكلة · الحل · القناعات · الخطوة العملية</div>
 </section>
 
-<!-- ════════ PROBLEM-SOLUTION (MISSING from original HTML) ════════ -->
+<!-- ════════ PROBLEM-SOLUTION ════════ -->
 <section id="problem-solution">
   <p class="sec-label fade-up">الصفحة ١</p>
   <h2 class="sec-title fade-up">الأساس — المشكلة والحل</h2>
@@ -423,7 +424,7 @@
   <p style="text-align:center;font-size:0.8rem;color:var(--gold);font-weight:500;margin-top:1rem;" class="fade-up">✏️ الهدف ليس الكمال، بل التقدم</p>
 </section>
 
-<!-- ════════ CHAPTER 2 DIVIDER ════════ -->
+<!-- ════════ CHAPTER 2 ════════ -->
 <section class="chapter-divider" id="ch2">
   <div class="chapter-num fade-up">٢</div>
   <div class="chapter-title fade-up">الأدوات</div>
@@ -455,7 +456,7 @@
   </div>
 </section>
 
-<!-- ════════ CLASSROOM VIDEOS 1 ════════ -->
+<!-- ════════ CLASSROOM VIDEOS ════════ -->
 <section id="classroom1">
   <p class="sec-label fade-up">🎥 من داخل الفصل</p>
   <h2 class="sec-title fade-up">شرح وفهم الطالبات للتقييم المعكوس</h2>
@@ -465,7 +466,9 @@
   <div class="video-section-wrap fade-up">
     <div class="video-section-title">🎥 مشاركة الطالبة الأولى</div>
     <div class="media-block video-block">
-      <video src="Videos/Vid 1 Ja.MP4" controls playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+      <video controls playsinline onerror="showFallback(this)">
+        <source src="Videos/Vid 1 Ja.MP4" type="video/mp4">
+      </video>
       <div class="media-fallback"><div class="media-fallback-icon">🎥</div><div>مشاركة الطالبة الأولى</div><div style="font-size:0.7rem;opacity:0.6">Videos/Vid 1 Ja.MP4</div></div>
     </div>
   </div>
@@ -473,7 +476,9 @@
   <div class="video-section-wrap fade-up" style="margin-top:1rem">
     <div class="video-section-title">🎥 مشاركة الطالبة الثانية</div>
     <div class="media-block video-block">
-      <video src="Videos/Vid 2 Ja.MP4" controls playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+      <video controls playsinline onerror="showFallback(this)">
+        <source src="Videos/Vid 2 Ja.MP4" type="video/mp4">
+      </video>
       <div class="media-fallback"><div class="media-fallback-icon">🎥</div><div>مشاركة الطالبة الثانية</div><div style="font-size:0.7rem;opacity:0.6">Videos/Vid 2 Ja.MP4</div></div>
     </div>
   </div>
@@ -481,7 +486,9 @@
   <div class="video-section-wrap fade-up" style="margin-top:1rem">
     <div class="video-section-title">🎥 مشاركة الطالبة الثالثة</div>
     <div class="media-block video-block">
-      <video src="Videos/Vid 3 Ja.MP4" controls playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+      <video controls playsinline onerror="showFallback(this)">
+        <source src="Videos/Vid 3 Ja.MP4" type="video/mp4">
+      </video>
       <div class="media-fallback"><div class="media-fallback-icon">🎥</div><div>مشاركة الطالبة الثالثة</div><div style="font-size:0.7rem;opacity:0.6">Videos/Vid 3 Ja.MP4</div></div>
     </div>
   </div>
@@ -520,14 +527,14 @@
   </div>
 </section>
 
-<!-- ════════ CHAPTER 3 DIVIDER ════════ -->
+<!-- ════════ CHAPTER 3 ════════ -->
 <section class="chapter-divider" id="ch3">
   <div class="chapter-num fade-up">٣</div>
   <div class="chapter-title fade-up">التطبيق</div>
   <div class="chapter-sub fade-up">الجدول الأسبوعي · الأعداد الكبيرة · جلسة المناقشة</div>
 </section>
 
-<!-- ════════ APPLICATION (MISSING from original HTML) ════════ -->
+<!-- ════════ APPLICATION ════════ -->
 <section id="application">
   <p class="sec-label fade-up">الصفحة ٣</p>
   <h2 class="sec-title fade-up">التطبيق العملي في الفصل</h2>
@@ -570,7 +577,7 @@
   </div>
 </section>
 
-<!-- ════════ ACCESSIBILITY (صعوبات التعلم - MISSING) ════════ -->
+<!-- ════════ ACCESSIBILITY ════════ -->
 <section id="accessibility">
   <p class="sec-label fade-up">♿ التقييم الشامل والمرن</p>
   <h2 class="sec-title fade-up">للطالبات ذوات صعوبات التعلم</h2>
@@ -615,21 +622,19 @@
   <div style="background:rgba(201,162,39,0.08);border:1px solid rgba(201,162,39,0.25);border-radius:10px;padding:1rem 1.2rem;font-size:0.85rem;color:var(--gold-pale);line-height:1.9;margin-top:1rem;" class="fade-up">
     <strong>📌 المبدأ الأساسي:</strong> لا تُجبري الطالبة على نموذج واحد. أعطيها الخيار، وستُفاجئك بما تقوله.
   </div>
-
-  <div class="video-section-wrap fade-up">
-    <div class="video-section-title">🎥 مقطع توضيحي عن تطبيق التقييم المرن لذوات صعوبات التعلم</div>
+  <div class="video-section-wrap fade-up" style="margin-top:1rem">
+    <div class="video-section-title">🎥 مقطع توضيحي عن التقييم المرن لذوات صعوبات التعلم</div>
     <div class="media-block video-block">
-      <video src="Videos/vid 7 ja.MP4" controls playsinline onerror="this.closest('.media-block').querySelector('.media-fallback').style.display='flex';this.style.display='none'">
+      <video controls playsinline onerror="showFallback(this)">
         <source src="Videos/vid 7 ja.MP4" type="video/mp4">
       </video>
-      <div class="media-fallback"><div class="media-fallback-icon">🎥</div><div>مقطع توضيحي عن التقييم المرن</div><div style="font-size:0.7rem;opacity:0.6">Videos/accessibility.MP4</div></div>
+      <div class="media-fallback"><div class="media-fallback-icon">🎥</div><div>مقطع توضيحي عن التقييم المرن</div><div style="font-size:0.7rem;opacity:0.6">Videos/vid 7 ja.MP4</div></div>
     </div>
     <p class="video-section-desc">مقطع يوضح أساليب التقييم المرن لذوات صعوبات التعلم</p>
   </div>
-
 </section>
 
-<!-- ════════ CHAPTER 4 DIVIDER ════════ -->
+<!-- ════════ CHAPTER 4 ════════ -->
 <section class="chapter-divider" id="ch4">
   <div class="chapter-num fade-up">٤</div>
   <div class="chapter-title fade-up">نماذج + حلول سريعة</div>
@@ -666,6 +671,7 @@
   <h2 class="sec-title fade-up">النتائج المقاسة</h2>
   <div class="gold-line fade-up"></div>
   <p style="font-size:0.85rem;color:var(--text-muted);text-align:center;" class="fade-up">تم قياس أثر التقييم المعكوس على أداء ٢٢ طالبة في مكوّنين أساسيين</p>
+
   <div class="result-block fade-up">
     <div class="result-block-header">📊 أولاً: التقويمات الشفهية والتحريرية (من ٢٠)</div>
     <div class="result-stats">
@@ -674,6 +680,7 @@
       <div class="stat-box pct"><div class="stat-num">26%</div><div class="stat-label">نسبة التحسن</div></div>
     </div>
   </div>
+
   <div class="result-block fade-up">
     <div class="result-block-header">📊 ثانياً: المهام الأدائية والمشاركة والتفاعل الصفي (من ٤٠)</div>
     <div class="result-stats">
@@ -682,20 +689,33 @@
       <div class="stat-box pct"><div class="stat-num">26%</div><div class="stat-label">نسبة التحسن</div></div>
     </div>
   </div>
+
+  <!-- FIXED BAR CHART: bars no longer overlap -->
   <div class="bar-chart fade-up" id="barChart">
     <div class="bar-row">
       <div class="bar-label"><span>التقويمات الشفهية والتحريرية (من ٢٠)</span><span>14.5 → 18.4</span></div>
-      <div class="bar-track"><div class="bar-before" id="bb1" style="width:0%"></div><div class="bar-after" id="ba1" style="width:0%;margin-top:-10px"></div></div>
+      <div class="bar-track">
+        <div class="bar-segment bar-before" id="bb1"></div>
+        <div class="bar-segment bar-after" id="ba1"></div>
+      </div>
     </div>
     <div class="bar-row">
       <div class="bar-label"><span>المهام الأدائية والمشاركة (من ٤٠)</span><span>29.3 → 36.9</span></div>
-      <div class="bar-track"><div class="bar-before" id="bb2" style="width:0%"></div><div class="bar-after" id="ba2" style="width:0%;margin-top:-10px"></div></div>
+      <div class="bar-track">
+        <div class="bar-segment bar-before" id="bb2"></div>
+        <div class="bar-segment bar-after" id="ba2"></div>
+      </div>
     </div>
-    <div class="bar-legend"><span><span class="leg-dot" style="background:#e74c3c"></span>قبل</span><span><span class="leg-dot" style="background:#2ecc71"></span>بعد</span></div>
+    <div class="bar-legend">
+      <span><span class="leg-dot" style="background:#e74c3c"></span>قبل</span>
+      <span><span class="leg-dot" style="background:#2ecc71"></span>بعد</span>
+    </div>
   </div>
+
   <div class="results-summary fade-up">
     📈 <strong>الخلاصة:</strong> لم تؤثر المبادرة فقط على الجانب التحريري والشفهي، بل حسّنت بشكل واضح المشاركة الصفية والمهام الأدائية أيضاً، مما يؤكد فعاليته في تحسين التعلم الشامل.
   </div>
+
   <div class="qr-dual fade-up" style="margin-top:1rem">
     <div class="qr-wrap">
       <div class="qr-wrap-label">📊 بيانات التقييم القبلي<br><span style="font-size:0.65rem;color:var(--text-muted)">(قبل المبادرة)</span></div>
@@ -712,7 +732,7 @@
   </div>
 </section>
 
-<!-- ════════ CLASSROOM PHOTOS 2 ════════ -->
+<!-- ════════ CLASSROOM VIDEO 2 ════════ -->
 <section id="classroom2">
   <p class="sec-label fade-up">📷 من داخل الفصل</p>
   <h2 class="sec-title fade-up">تفاعل الطالبات مع التقييم المعكوس</h2>
@@ -720,7 +740,9 @@
   <div class="video-section-wrap fade-up">
     <div class="video-section-title">🎥 من واقع الفصل — تفاعل الطالبات</div>
     <div class="media-block video-block">
-      <video src="Videos/vid 6 ja.MP4" controls playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+      <video controls playsinline onerror="showFallback(this)">
+        <source src="Videos/vid 6 ja.MP4" type="video/mp4">
+      </video>
       <div class="media-fallback"><div class="media-fallback-icon">🎥</div><div>تفاعل الطالبات مع التقييم المعكوس</div><div style="font-size:0.7rem;opacity:0.6">Videos/vid 6 ja.MP4</div></div>
     </div>
   </div>
@@ -750,8 +772,10 @@
   <div class="video-section-wrap fade-up">
     <div class="video-section-title">🎥 شهادة الطالبة</div>
     <div class="media-block video-block">
-      <video src="Videos/vid 4 ja.MP4" controls playsinline onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
-      <div class="media-fallback"><div class="media-fallback-icon">🎥</div><div>شهادة الطالبة عن تجربتها</div><div style="font-size:0.7rem;opacity:0.6">Videos/vid 5 ja.MP4</div></div>
+      <video controls playsinline onerror="showFallback(this)">
+        <source src="Videos/vid 4 ja.MP4" type="video/mp4">
+      </video>
+      <div class="media-fallback"><div class="media-fallback-icon">🎥</div><div>شهادة الطالبة عن تجربتها</div><div style="font-size:0.7rem;opacity:0.6">Videos/vid 4 ja.MP4</div></div>
     </div>
     <p class="video-section-desc">شهادة طالبة عن تجربتها مع التقييم المعكوس</p>
   </div>
@@ -813,8 +837,11 @@ function checkVisible() {
   if (bc && bc.getBoundingClientRect().top < window.innerHeight * 0.9 && !bc.dataset.animated) {
     bc.dataset.animated = '1';
     setTimeout(() => {
-      document.getElementById('bb1').style.width = '72%';
-      document.getElementById('ba1').style.width = '91%';
+      // Bar widths: before = value/max * 100, after = value/max * 100
+      // Track 1: /20 — before 14.55 = 72.75%, after 18.36 = 91.8%
+      document.getElementById('bb1').style.width = '73%';
+      document.getElementById('ba1').style.width = '92%';
+      // Track 2: /40 — before 29.27 = 73.17%, after 36.91 = 92.27%
       document.getElementById('bb2').style.width = '73%';
       document.getElementById('ba2').style.width = '92%';
     }, 200);
@@ -822,6 +849,13 @@ function checkVisible() {
 }
 window.addEventListener('scroll', checkVisible);
 checkVisible();
+
+// ── UNIFIED VIDEO FALLBACK ──
+function showFallback(videoEl) {
+  videoEl.style.display = 'none';
+  const fallback = videoEl.closest('.media-block').querySelector('.media-fallback');
+  if (fallback) fallback.style.display = 'flex';
+}
 
 // ── INTERACTIONS ──
 function selectPill(el) {
@@ -843,7 +877,10 @@ function selectScale2(el, val) {
   s2 = val;
   const m = document.getElementById('changeMsg');
   m.style.display = 'block';
-  if (!s1) { m.textContent = '✨ أهلاً بكِ في رحلة التغيير!'; return; }
+  if (!s1) {
+    m.textContent = '💡 لم تختاري مستواك في البداية — ارجعي لأعلى الصفحة وحددي مستواك الأول!';
+    return;
+  }
   const d = s2 - s1;
   m.textContent = d > 0
     ? `🎉 رائع! تقدّمتِ ${d} ${d === 1 ? 'خطوة' : 'خطوات'} للأمام!`
